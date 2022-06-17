@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@if (session('error'))
+    <div class="alert alert-danger w-50 mx-auto mt-5">{{ session('error') }}</div>
+@endif
 
 <div class="card w-50 mx-auto mt-5">
     <div class="card-header">

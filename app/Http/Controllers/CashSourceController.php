@@ -56,9 +56,14 @@ class CashSourceController extends Controller implements Transection
 
     function store(Request $request)
     {
+
         $this->validates($request);
         $total =   $this->amount($request);
         $arr = $this->inputs($request, $total);
+
+        if ($total > 10000) {
+            return back()->with('error', 'Max Amount limit is 10k');
+        }
 
         $transection = new ModelsTransection();
         $transection->cash = $arr;

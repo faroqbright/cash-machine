@@ -55,6 +55,10 @@ class CreditCardSourceController extends Controller implements Transection
         $amount = $this->amount($request);
         $arr = $this->inputs($request, $amount);
 
+        if ($amount > 20000) {
+            return back()->with('error', 'Max Amount limit is 20k');
+        }
+
         $transection = new ModelsTransection();
         $transection->credit = $arr;
         $transection->save();
